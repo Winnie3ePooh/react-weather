@@ -1,0 +1,14 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  background: url('assets/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+#root {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+}
