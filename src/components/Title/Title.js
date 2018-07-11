@@ -23,4 +23,6 @@ const TitleWrapper = styled.div`
 
 const BigTitle = styled.div`
   font-size: 50px;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
 `

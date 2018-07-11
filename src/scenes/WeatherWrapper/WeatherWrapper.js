@@ -127,6 +127,7 @@ export default WeatherWrapper
 const WeatherContainer = Container.extend`
   width: 80%;
   justify-content: center;
+  color: #ffffff;
 `
 
 const NavContainer = Container.extend`

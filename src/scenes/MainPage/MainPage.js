@@ -71,4 +71,5 @@ const MainContent = AppWrapper.extend`
   width: 100%;
   margin: 0;
   align-items: center;
+  font-family: 'Montserrat', sans-serif;
 `

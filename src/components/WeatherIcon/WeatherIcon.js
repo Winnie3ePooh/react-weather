@@ -13,43 +13,43 @@ import celcius from 'assets/weather-svg/Degrees-Celcius.svg'
 
 const weatherIconUrls = [
   {
-    type: '01d',
+    type: ['01d', '01n'],
     img: clearSky
   },
   {
-    type: '02d',
+    type: ['02d', '02n'],
     img: fewClouds
   },
   {
-    type: '03d',
+    type: ['03d', '03n'],
     img: cloud
   },
   {
-    type: '04d',
+    type: ['04d', '04n'],
     img: cloud
   },
   {
-    type: '09d',
+    type: ['09d', '09n'],
     img: showerRain
   },
   {
-    type: '10d',
+    type: ['10d', '10n'],
     img: rain
   },
   {
-    type: '10d',
+    type: ['10d', '10n'],
     img: rain
   },
   {
-    type: '11d',
+    type: ['11d', '11n'],
     img: thunderstorm
   },
   {
-    type: '13d',
+    type: ['13d', '13n'],
     img: snow
   },
   {
-    type: '50d',
+    type: ['50d', '50n'],
     img: mist
   },
   {
@@ -61,7 +61,7 @@ const weatherIconUrls = [
 const weatherIcon = ({ weatherType }) => {
   console.log(weatherType)
   const iconImg = weatherIconUrls.find(el => {
-    return el.type === weatherType
+    return el.type.includes(weatherType)
   }).img
   return iconImg
 }

@@ -11,6 +11,8 @@ export const Container = styled.div`
 export const WeatherCardsContainer = Container.extend`
   width: 500px;
   position: relative;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
   ${({ term }) =>
     term &&
     `&::before {
