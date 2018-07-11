@@ -1,13 +1,16 @@
-import axios from "axios";
+import axios from 'axios'
 
-export function getCitiesList(cityName) {
-  return axios.get(`/api/v1/citiesList`);
+export async function getCitiesList (cityName) {
+  const res = await axios.get(`/api/v1/citiesList`)
+  return res.data
 }
 
-export function getCitySuggestion(cityName) {
-  return axios.get(`/api/v1/citiesVariants?city=${cityName}`);
+export async function getCitySuggestion (cityName) {
+  const res = await axios.get(`/api/v1/citiesVariants?city=${cityName}`)
+  return res.data
 }
 
-export function getTodaysCityWeather(cityName, term) {
-  return axios.get(`/api/v1/todaysWeather?city=${cityName}&term=${term}`);
+export async function getTodaysCityWeather (cityName, term) {
+  const res = await axios.get(`/api/v1/todaysWeather?city=${cityName}&term=${term}`)
+  return res.data
 }

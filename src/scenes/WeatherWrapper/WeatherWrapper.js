@@ -1,22 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Container from '../components/Container'
+import { Container } from 'components/Container'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 
-import Loading from '../components/Loading'
-import Weather from './Weather'
-import WeatherLongTerm from './WeatherLongTerm'
-import CityTitle from '../components/CityTitle'
+import Loading from 'components/Loading'
+import Weather from 'scenes/Weather'
+import WeatherLongTerm from 'scenes/WeatherLongTerm'
+import CityTitle from 'components/CityTitle'
 
-import * as WS from '../services/weather.service'
+import * as WS from 'services/weather.service'
 
 function TabContainer ({ children }) {
   return (
-    <Typography component='div' style={{ padding: 8 * 3 }}>
+    <Typography component='div' align='center' style={{ padding: 8 * 3 }}>
       {children}
     </Typography>
   )
@@ -53,20 +53,22 @@ class WeatherWrapper extends React.Component {
     this.getTodaysCityWeather()
   }
 
-  getTodaysCityWeather () {
-    WS.getTodaysCityWeather(this.props.city.name, 'today')
-      .then(resp => {
-        this.setState({
-          currWeather: resp.data,
-          loading: false,
-          error: false
-        })
+  async getTodaysCityWeather () {
+    try {
+      const weatherData = await WS.getTodaysCityWeather(
+        this.props.city.name,
+        'today'
+      )
+      this.setState({
+        currWeather: weatherData,
+        loading: false,
+        error: false
       })
-      .catch(err => {
-        this.setState({
-          error: true
-        })
+    } catch (error) {
+      this.setState({
+        error: true
       })
+    }
   }
 
   render () {
@@ -97,7 +99,7 @@ class WeatherWrapper extends React.Component {
                 {this.state.loading ? (
                   <Loading />
                 ) : (
-                  <Weather currWeather={this.state.currWeather} term={false} />
+                  <Weather currWeather={this.state.currWeather} term />
                 )}
               </TabContainer>
             )}
@@ -125,5 +127,5 @@ const WeatherContainer = Container.extend`
 `
 
 const NavContainer = Container.extend`
-  width:50%
+  width: 50%;
 `
