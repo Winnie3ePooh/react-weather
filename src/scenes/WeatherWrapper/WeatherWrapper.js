@@ -7,6 +7,7 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 
+import Warning from 'components/Warning'
 import Loading from 'components/Loading'
 import WeatherCard from 'components/WeatherCard'
 import WeatherLongTerm from 'scenes/WeatherLongTerm'
@@ -19,12 +20,6 @@ function TabContainer ({ children }) {
     <Typography component='div' align='center' style={{ padding: 8 * 3 }}>
       {children}
     </Typography>
-  )
-}
-
-function Warning ({ mess }) {
-  return (
-    <h2 className='center-align'>Something went wrong. Try again later.</h2>
   )
 }
 
@@ -131,6 +126,7 @@ export default WeatherWrapper
 
 const WeatherContainer = Container.extend`
   width: 80%;
+  justify-content: center;
 `
 
 const NavContainer = Container.extend`
