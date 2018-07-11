@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { Container, WeatherCardsContainer } from 'components/Container'
 import WeatherIcon from 'components/WeatherIcon'
-import * as utils from '../helpers/utils'
+import * as utils from 'helpers/utils'
 
-class Weather extends React.Component {
+class WeatherCard extends React.Component {
   render () {
     return (
       <WeatherCardsContainer term={this.props.term}>
@@ -38,6 +38,8 @@ class Weather extends React.Component {
     )
   }
 }
+
+export default WeatherCard
 
 const WeatherCardDate = styled.h2`
   text-align: center;
@@ -87,5 +89,3 @@ const WeatherCardElem = Container.extend`
 const Text = styled.span`
   font-size: 16px;
 `
-
-export default Weather

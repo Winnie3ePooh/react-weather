@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'components/Container'
-import CityInput from 'scenes/CityInput'
-import WeatherWrapper from 'scenes/WeatherWrapper/WeatherWrapper'
+import CityInput from 'components/Input'
+import WeatherWrapper from 'scenes/WeatherWrapper'
 import styled from 'styled-components'
 import Title from 'components/Title'
 import Loading from 'components/Loading'
@@ -22,11 +22,6 @@ class MainPage extends React.Component {
     let citiesList = []
     try {
       citiesList = await weatherService.getCitiesList()
-      this.setState({
-        citiesList: citiesList,
-        isLoading: false,
-        selectedCityName: {name: 'Moscow'}
-      })
     } catch (error) {
       citiesList = []
     }

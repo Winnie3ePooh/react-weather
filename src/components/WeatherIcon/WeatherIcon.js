@@ -59,6 +59,7 @@ const weatherIconUrls = [
 ]
 
 const weatherIcon = ({ weatherType }) => {
+  console.log(weatherType)
   const iconImg = weatherIconUrls.find(el => {
     return el.type === weatherType
   }).img

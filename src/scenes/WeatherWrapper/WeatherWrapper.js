@@ -8,7 +8,7 @@ import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 
 import Loading from 'components/Loading'
-import Weather from 'scenes/Weather'
+import WeatherCard from 'components/WeatherCard'
 import WeatherLongTerm from 'scenes/WeatherLongTerm'
 import CityTitle from 'components/CityTitle'
 
@@ -53,7 +53,14 @@ class WeatherWrapper extends React.Component {
     this.getTodaysCityWeather()
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.city.name !== this.props.city.name) {
+      this.getTodaysCityWeather()
+    }
+  }
+
   async getTodaysCityWeather () {
+    this.setState({ loading: true })
     try {
       const weatherData = await WS.getTodaysCityWeather(
         this.props.city.name,
@@ -99,7 +106,7 @@ class WeatherWrapper extends React.Component {
                 {this.state.loading ? (
                   <Loading />
                 ) : (
-                  <Weather currWeather={this.state.currWeather} term />
+                  <WeatherCard currWeather={this.state.currWeather} term />
                 )}
               </TabContainer>
             )}

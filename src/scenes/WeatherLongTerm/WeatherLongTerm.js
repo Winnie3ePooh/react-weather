@@ -1,5 +1,5 @@
 import React from 'react'
-import Weather from './Weather'
+import WeatherCard from 'components/WeatherCard'
 import Loading from 'components/Loading'
 import Slider from 'react-slick'
 import { WeatherCardsContainer } from 'components/Container'
@@ -9,8 +9,8 @@ import bgImage from 'assets/bg.jpg'
 import * as utils from 'helpers/utils'
 import * as WS from 'services/weather.service'
 
-require('../../node_modules/slick-carousel/slick/slick.css')
-require('../../node_modules/slick-carousel/slick/slick-theme.css')
+require('../../../node_modules/slick-carousel/slick/slick.css')
+require('../../../node_modules/slick-carousel/slick/slick-theme.css')
 
 function TabContainer ({ children }) {
   return (
@@ -20,12 +20,9 @@ function TabContainer ({ children }) {
   )
 }
 
-
 function WeatherList ({ weather }) {
   const weatherList = weather.map((elem, idx) => {
-    return (
-      <Weather key={idx} currWeather={elem} term={false} />
-    )
+    return <WeatherCard key={idx} currWeather={elem} term={false} />
   })
   const settings = {
     dots: true,
@@ -36,9 +33,7 @@ function WeatherList ({ weather }) {
   }
   return (
     <DayWeatherWrapper term>
-      <Slider {...settings}>
-        {weatherList}
-      </Slider>
+      <Slider {...settings}>{weatherList}</Slider>
     </DayWeatherWrapper>
   )
 }
@@ -47,8 +42,10 @@ class WeatherLongTerm extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      lastCityName: this.props.city.name,
       loading: true
     }
+    this.getWeatherData = this.getWeatherData.bind(this)
   }
 
   weatherFilter (obj) {
@@ -77,7 +74,17 @@ class WeatherLongTerm extends React.Component {
     }
   }
 
-  async componentDidMount () {
+  componentDidMount () {
+    this.getWeatherData()
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.city.name !== this.props.city.name) {
+      this.getWeatherData()
+    }
+  }
+
+  async getWeatherData () {
     try {
       let weatherData = await WS.getTodaysCityWeather(
         this.props.city.name,
