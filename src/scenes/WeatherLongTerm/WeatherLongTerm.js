@@ -85,6 +85,7 @@ class WeatherLongTerm extends React.Component {
   }
 
   async getWeatherData () {
+    this.setState({ loading: true })
     try {
       let weatherData = await WS.getTodaysCityWeather(
         this.props.city.name,

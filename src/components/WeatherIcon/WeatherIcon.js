@@ -85,5 +85,5 @@ const WeatherIconWrapper = Container.extend`
 const Icon = styled.div`
   height: 180px;
   background: url('${weatherIcon}') no-repeat center center;
-  background-size: cover;
+  background-size: contain;
 `
